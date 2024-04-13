@@ -208,6 +208,22 @@ class AudioVisualizer:
         self.p.terminate()
 
 
+def get_default_input_device_index():
+    audio = pyaudio.PyAudio()
+    info = audio.get_default_input_device_info()
+    return info["index"]
+
+
+def get_default_output_device_index():
+    audio = pyaudio.PyAudio()
+    info = audio.get_default_output_device_info()
+    return info["index"]
+
+
 if __name__ == "__main__":
-    visualizer = AudioVisualizer(input_device_index=7, output_device_index=12)
+    input_device_index = get_default_input_device_index()
+    output_device_index = get_default_output_device_index()
+    visualizer = AudioVisualizer(
+        input_device_index=input_device_index, output_device_index=output_device_index
+    )
     visualizer.run()
