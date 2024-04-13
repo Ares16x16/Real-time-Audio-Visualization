@@ -2,8 +2,8 @@
 
 This is a real-time audio visualizer application implemented in Python using Tkinter and PyAudio. It provides visual representations of audio input in various modes. If you want to take the audio output of the computer as input, I suggest installing a virtual cable.
 
-![gif](https://github.com/Ares16x16/Real-time-Audio-Visualization/assets/53862923/8633e4b4-0fbf-4100-8fec-e6ef0a6fb04e)
 
+https://github.com/Ares16x16/Real-time-Audio-Visualization/assets/53862923/2397cc35-2639-458d-bf96-9256f2448889
 
 
 ## Features
