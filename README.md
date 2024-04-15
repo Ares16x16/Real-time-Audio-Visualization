@@ -29,8 +29,9 @@ https://github.com/Ares16x16/Real-time-Audio-Visualization/assets/53862923/2397c
 ## Usage
 
 - The desired input and output devices can be selected from the menu. The default input and output devices are the same as the default setting of your computer.
-- The visualization modes are available from the menu. There are currently 6 of them:                           
-![image](https://github.com/Ares16x16/Real-time-Audio-Visualization/assets/53862923/c27b9ace-e8f0-4e12-a535-72c7f22cbce8)
+- The visualization modes are available from the menu. There are currently 7 of them:                           
+![image](https://github.com/Ares16x16/Real-time-Audio-Visualization/assets/53862923/62c25496-d0b3-4a4a-b48a-5c7487936296)
+
 - For setting a custom color for the visualization, go to the "Color" submenu and select "Set Color.":
 ![image](https://github.com/Ares16x16/Real-time-Audio-Visualization/assets/53862923/8efd812f-ee53-4978-b31f-db6daf07f8df)
 
