@@ -3,6 +3,8 @@ import cmath
 import tkinter as tk
 import pyaudio
 from scipy import signal
+from scipy.fftpack import dct
+import librosa
 
 # from scipy.fft import fft
 
@@ -276,3 +278,40 @@ def anti_aliasing_filter_circle(visualizer, window, canvas, audio_data):
             angle_to_center,
             visualizer.bar_color,
         )
+
+
+""" mel frequency cepstral coefficients """
+
+
+def mel_frequency_cepstral_coefficients(visualizer, window, canvas, audio_data):
+
+    window_width = window.winfo_width()
+    window_height = window.winfo_height()
+    bar_width = 20
+    bar_y = window_height // 2
+
+    n_mfcc = window_width // bar_width - 1
+    audio_data = np.array(audio_data, dtype=np.float32)
+    # audio_data = np.where(audio_data < 5 , 0.0, audio_data)
+    # print(audio_data)
+    mfccs = librosa.feature.mfcc(y=audio_data, sr=44100, n_mfcc=n_mfcc)
+    # mfccs = librosa.power_to_db(mfccs, ref=np.max)
+    # np.delete(mfccs, 0, axis=0)
+    # print(mfccs)
+
+    # Add up the channels for each frame
+    summed_mfccs = np.sum(mfccs, axis=1)
+    num_frames = summed_mfccs.shape[0]
+
+    for i in range(num_frames):
+        height = summed_mfccs[i] / 3
+        bar_x = bar_width / 2 + i * bar_width
+        canvas.create_rectangle(
+            bar_x,
+            bar_y,
+            bar_x + bar_width,
+            bar_y + height,
+            fill=visualizer.bar_color,
+        )
+
+        bar_x += bar_width

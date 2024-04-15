@@ -16,7 +16,6 @@ RATE = 44100  # Sample rate (Hz)
 window = tk.Tk()
 window.title("Real-time Audio Visualizer")
 window.resizable(False, False)
-
 # Set up the Tkinter canvas
 WINDOW_WIDTH = 800
 WINDOW_HEIGHT = 400
@@ -61,6 +60,7 @@ class AudioVisualizer:
             "Anti-Aliasing Filter Vertical Circle": mode.anti_aliasing_filter_vertical_circle,
             "Anti-Aliasing Filter Vertical Inner Circle": mode.anti_aliasing_filter_vertical_inner_circle,
             "Anti-Aliasing Filter Circle": mode.anti_aliasing_filter_circle,
+            "Mel-Frequency Cepstral Coefficients": mode.mel_frequency_cepstral_coefficients,
         }
         self.current_mode_name = "Average Horizontal Rectangle"
 
@@ -127,6 +127,10 @@ class AudioVisualizer:
             command=lambda: self.set_mode(
                 "Fast Fourier Transform Horizontal Rectangle"
             ),
+        )
+        mode_menu.add_command(
+            label="Mel-Frequency Cepstral Coefficients",
+            command=lambda: self.set_mode("Mel-Frequency Cepstral Coefficients"),
         )
 
         self.audio_event = threading.Event()
@@ -208,22 +212,6 @@ class AudioVisualizer:
         self.p.terminate()
 
 
-def get_default_input_device_index():
-    audio = pyaudio.PyAudio()
-    info = audio.get_default_input_device_info()
-    return info["index"]
-
-
-def get_default_output_device_index():
-    audio = pyaudio.PyAudio()
-    info = audio.get_default_output_device_info()
-    return info["index"]
-
-
 if __name__ == "__main__":
-    input_device_index = get_default_input_device_index()
-    output_device_index = get_default_output_device_index()
-    visualizer = AudioVisualizer(
-        input_device_index=input_device_index, output_device_index=output_device_index
-    )
+    visualizer = AudioVisualizer(input_device_index=7, output_device_index=12)
     visualizer.run()
